@@ -6,13 +6,12 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     steps: 
-      - name: echo
-        run: |
-          echo "running"
+      # 動かない
       - name: echo if release 1
         if: github.ref == 'refs/heads/release/**'
         run: |
           echo "condition is github.ref == 'refs/heads/release/**'"
+      # 動く
       - name: echo if release 2
         if: startsWith(github.ref, 'refs/heads/release')
         run: |
