@@ -11,6 +11,12 @@ jobs:
       API_ENDPOINT: ${{ github.event.issue.pull_request.url }}
       GITHUB_PULL_REQUEST_NUMBER: ${{ github.event.issue.number }}
     steps:
+        - name: echo1
+          run:
+            echo GITHUB_TOKEN is ${GITHUB_TOKEN}.
+        - name: echo2
+          run:
+            echo GITHUB_TOKEN is ${API_ENDPOINT}.
         - name: Create URL
           run: |
             curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" -i ${API_ENDPOINT} -d "`printf '{\"body\":\"deploy to %s\"}' ${S3_URL}/"pr-"${GITHUB_PULL_REQUEST_NUMBER}`"
