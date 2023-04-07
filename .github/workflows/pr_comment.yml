@@ -17,6 +17,13 @@ jobs:
         - name: echo2
           run:
             echo GITHUB_TOKEN is ${API_ENDPOINT}.
-        - name: Create URL
-          run: |
-            curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" -i ${API_ENDPOINT} -d "`printf '{\"body\":\"deploy to %s\"}' ${S3_URL}/"pr-"${GITHUB_PULL_REQUEST_NUMBER}`"
+        - uses: actions/github-script@v3
+          with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+              github.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '👋 Thanks for reporting!'
+              })
