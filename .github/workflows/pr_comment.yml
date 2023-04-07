@@ -13,6 +13,5 @@ jobs:
       GITHUB_PULL_REQUEST_NUMBER: ${{ github.event.issue.number }}
     steps:
         - name: Create URL
-          if: "steps.check.outputs.branch"
           run: |
             curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" -i ${API_ENDPOINT} -d "`printf '{\"body\":\"deploy to %s\"}' ${S3_URL}/"pr-"${GITHUB_PULL_REQUEST_NUMBER}`"
