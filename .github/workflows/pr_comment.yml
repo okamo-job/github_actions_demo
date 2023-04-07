@@ -1,12 +1,11 @@
 name: StoryBook Deploy S3[pull_request]
 
 on:
-  push:
+  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
       S3_URL: s3_demo
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       API_ENDPOINT: ${{ github.event.issue.pull_request.url }}
