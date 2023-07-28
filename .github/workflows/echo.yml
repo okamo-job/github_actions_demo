@@ -5,14 +5,20 @@ on:
 jobs:
   echo:
     runs-on: ubuntu-latest
-    steps: 
-      # 動かない
-      - name: echo if release 1
-        if: github.ref == 'refs/heads/release/**'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set ENVIRONMENT variable
         run: |
-          echo "condition is github.ref == 'refs/heads/release/**'"
-      # 動く
-      - name: echo if release 2
-        if: startsWith(github.ref, 'refs/heads/release')
+          if true; then
+            echo "ENVIRONMENT=test" >> $GITHUB_ENV
+          fi
+      - name: echo
         run: |
-          echo "condition is startsWith(github.ref, 'refs/heads/release')"
+          echo $ENVIRONMENT
+      - name: pwd
+        run: |
+          pwd
+      - name: working_dir
+        working-directory: ./${ENVIRONMENT}
+        run: |
+          ls
