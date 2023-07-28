@@ -1,6 +1,5 @@
 on: 
   push:
-  pull_request:
 
 jobs:
   echo:
@@ -19,6 +18,6 @@ jobs:
         run: |
           pwd
       - name: working_dir
-        working-directory: ./${env.ENVIRONMENT}
+        working-directory: ./test
         run: |
           ls
