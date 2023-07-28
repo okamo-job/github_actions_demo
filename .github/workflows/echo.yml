@@ -18,6 +18,6 @@ jobs:
         run: |
           pwd
       - name: working_dir
-        working-directory: ./test
+        working-directory: ./${{env.ENVIRONMENT}}
         run: |
           ls
